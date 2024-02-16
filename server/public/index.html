@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Shorten</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>shorten</h1>
+        <h4>contact us</h4>
+        <h2>Login</h2>
+        <h3>Sign up Free</h3>
+    </div> 
+
+    <div class="middle">
+       <h1>Lets <span class="link">shorten</span> the link</h1> 
+       <p>Create short links and share them anywhere.
+         Easy track, manage, and analyze link.</p>
+    </div>
+
+    <div class="inputlink">
+        <h1> Paste a long URL</h1>
+        <form id="urlForm" >
+            <input id="input1" type="text" placeholder="Shorten a link here">
+             <button id="submit">Submit</button>       
+        </form>
+        <div id="shortenedLinkContainer">
+          <!-- The shortened link will be displayed here -->
+      </div>
+
+    </div>
+
+
+</div>
+
+    <script>
+        document.getElementById('urlForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const longURL = document.getElementById('input1').value;
+
+    // Send a POST request to your server to shorten the URL
+    const response = await fetch('http://localhost:3700/shorten', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ longURL }),
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    const shortenedLinkContainer = document.getElementById('shortenedLinkContainer');
+        shortenedLinkContainer.innerHTML = `<p>Shortened Link: <a href="${result.shortURL}" target="_blank">${result.shortURL}</a></p>`;
+  });
+
+
+    </script>
+
+    
+</body>
+</html>
