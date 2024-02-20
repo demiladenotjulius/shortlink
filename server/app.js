@@ -19,15 +19,12 @@ mongoose.connect('mongodb+srv://shorten:142580@cluster0.gpbwmkj.mongodb.net/urlS
   console.log(err)
 });
 
-
 const urlSchema = new mongoose.Schema({
   longURL: String,
   shortCode: String,
 });
 
 const UrlModel = mongoose.model('Url', urlSchema);
-
-
 
 app.post('/shorten', async (req, res) => {
   console.log('Received POST request to /shorten');
@@ -40,13 +37,10 @@ app.post('/shorten', async (req, res) => {
     shortCode,
   });
 
-
   await newURL.save();
 
-  res.json({ shortURL: `https://shortlink-puce.vercel.app/${shortCode}` });
+  res.json({ shortURL:`https://shortlink-puce.vercel.app/${shortCode}` });
 });
-
-
 
 app.get('/:shortCode', async (req, res) => {
   console.log('Received GET request to /:shortCode');
@@ -60,8 +54,6 @@ app.get('/:shortCode', async (req, res) => {
     res.status(404).json({ error: 'URL not found' });
   }
 })
-
-
 
 app.listen(port , () => {
     console.log(`listening to port ${port}`)
