@@ -19,6 +19,7 @@ mongoose.connect('mongodb+srv://shorten:142580@cluster0.gpbwmkj.mongodb.net/urlS
   console.log(err)
 });
 
+
 const urlSchema = new mongoose.Schema({
   longURL: String,
   shortCode: String,
@@ -30,6 +31,7 @@ const UrlModel = mongoose.model('Url', urlSchema);
 
 app.post('/shorten', async (req, res) => {
   console.log('Received POST request to /shorten');
+
   const longURL = req.body.longURL;
   const shortCode = shortid.generate();
 

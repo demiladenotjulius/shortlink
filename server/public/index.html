@@ -39,10 +39,11 @@
 </div>
 
     <script>
-        document.getElementById('urlForm').addEventListener('submit', async function(event) {
+    document.getElementById('urlForm').addEventListener('submit', async function(event) {
     event.preventDefault();
     console.log('Form submitted');
     const longURL = document.getElementById('input1').value;
+       try{
 
     // Send a POST request to your server to shorten the URL
 
@@ -54,12 +55,15 @@
       body: JSON.stringify({ longURL }),
     });
 
-    const result = await response.json();
-    console.log(result);
-
     if (!response.ok) {
   console.error('Error:', response.statusText);
   return;
+}
+
+const result = await response.json();
+    console.log(result);
+} catch (error) {
+  console.log('Fetch Error:', error)
 }
 
 
