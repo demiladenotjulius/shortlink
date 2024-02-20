@@ -10,11 +10,14 @@ const port = process.env.PORT || 3700;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost/urlShortener', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect('mongodb+srv://shorten:142580@cluster0.gpbwmkj.mongodb.net/urlShortener')
+.then(()=>{
+  console.log('database connection established')
 
+})
+.catch(err => {
+  console.log(err)
+});
 
 const urlSchema = new mongoose.Schema({
   longURL: String,
@@ -37,7 +40,7 @@ app.post('/shorten', async (req, res) => {
 
   await newURL.save();
 
-  res.json({ shortURL: `http://localhost:3700/${shortCode}` });
+  res.json({ shortURL: `https://shortlink-puce.vercel.app/${shortCode}` });
 });
 
 
