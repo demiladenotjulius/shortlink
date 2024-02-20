@@ -41,10 +41,11 @@
     <script>
         document.getElementById('urlForm').addEventListener('submit', async function(event) {
     event.preventDefault();
-
+    console.log('Form submitted');
     const longURL = document.getElementById('input1').value;
 
     // Send a POST request to your server to shorten the URL
+
     const response = await fetch('https://shortlink-puce.vercel.app/shorten', {
       method: 'POST',
       headers: {
@@ -55,6 +56,12 @@
 
     const result = await response.json();
     console.log(result);
+
+    if (!response.ok) {
+  console.error('Error:', response.statusText);
+  return;
+}
+
 
     const shortenedLinkContainer = document.getElementById('shortenedLinkContainer');
         shortenedLinkContainer.innerHTML = `<p>Shortened Link: <a href="${result.shortURL}" target="_blank">${result.shortURL}</a></p>`;

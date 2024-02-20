@@ -29,6 +29,7 @@ const UrlModel = mongoose.model('Url', urlSchema);
 
 
 app.post('/shorten', async (req, res) => {
+  console.log('Received POST request to /shorten');
   const longURL = req.body.longURL;
   const shortCode = shortid.generate();
 
@@ -46,8 +47,9 @@ app.post('/shorten', async (req, res) => {
 
 
 app.get('/:shortCode', async (req, res) => {
-  const shortCode = req.params.shortCode;
+  console.log('Received GET request to /:shortCode');
 
+  const shortCode = req.params.shortCode;
   const urlData = await UrlModel.findOne({ shortCode });
 
   if (urlData) {
