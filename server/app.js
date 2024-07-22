@@ -6,7 +6,7 @@ const cors = require('cors');  // Import the cors middleware
 const app = express();
 const port = process.env.PORT || 4700;
 const dotenv = require('dotenv');
-dotenv.config()
+dotenv.config
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -40,10 +40,8 @@ app.post('/shorten', async (req, res) => {
 
   await newURL.save();
 
-  const baseURL = process.env.BASE_URL;
-  const shortURL = `${baseURL}/${shortCode}`;
-
-  res.json({ shortURL });});
+  res.json({ shortURL: `${req.protocol}://${req.get('host')}/${shortCode}` });
+});
 
 app.get('/:shortCode', async (req, res) => {
   console.log('Received GET request to /:shortCode');
