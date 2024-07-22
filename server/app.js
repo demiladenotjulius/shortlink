@@ -3,12 +3,13 @@ const mongoose = require('mongoose');
 const shortid = require('shortid');
 const path = require('path');
 const app = express();
-
-const port = process.env.PORT || 3700;
+const cors = require('cors');  // Import the cors middleware
+const port = process.env.PORT || 4900;
 
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+app.use(cors());
 
 mongoose.connect('mongodb+srv://shorten:142580@cluster0.gpbwmkj.mongodb.net/urlShortener')
 .then(()=>{

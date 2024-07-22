@@ -80,6 +80,7 @@
       color: white;
       font-size: 20px;
       font-family: 'Poppins', sans-serif;
+      cursor: pointer;
 
 
       
@@ -95,4 +96,17 @@ form{
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
 
+}
+
+#popupmessage{
+    font-size: 20px;
+
+}
+#testButton{
+    font-size: 10px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+}
+.reduce{
+    width: 100%;
 }
