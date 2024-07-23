@@ -5,8 +5,8 @@ const path = require('path');
 const cors = require('cors');  // Import the cors middleware
 const app = express();
 const port = process.env.PORT || 4700;
-const dotenv = require('dotenv');
-dotenv.config
+// const dotenv = require('dotenv');
+// dotenv.config
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());

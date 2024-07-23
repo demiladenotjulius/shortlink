@@ -9,9 +9,9 @@
     },
     "action": {
       "default_icon": {
-        "16": "images/icons.jpeg",
-        "48": "images/icons.jpeg",
-        "128": "images/icons.jpeg"
+        "16": "images/icon.png",
+        "48": "images/icon.png",
+        "128": "images/icon.png"
       }
     }
   }
